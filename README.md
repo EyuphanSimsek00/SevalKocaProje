@@ -8,7 +8,7 @@ Modern, estetik ve akıcı bir kullanıcı deneyimi sunmak amacıyla tasarlanmı
 * **Hızlı Yükleme:** Optimize edilmiş bileşen yapısı.
 
 ## 💻 Kullanılan Teknolojiler
-* Frontend: React / Next.js (Hangisini kullanıyorsanız düzenleyin)
+* Frontend: React 
 * Dil: TypeScript
 * Stil: Tailwind CSS / SCSS 
 
