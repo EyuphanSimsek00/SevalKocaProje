@@ -7,11 +7,14 @@ import { Search, ShoppingBag, User, Menu, X, ChevronDown } from "lucide-react";
 import CartDrawer from "./CartDrawer";
 import { useCart } from "@/context/CartContext";
 import SearchOverlay from "./SearchOverlay";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false); // Sepet açma/kapama durumu
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  
+  const { data: session, status } = useSession();
   
   const { cartItems } = useCart(); // Sepet verilerini çekiyoruz
   // Sepetteki toplam ürün sayısını buluyoruz (Badge için)
@@ -65,9 +68,27 @@ export default function Header() {
 
         {/* SAĞ ALAN: İKONLAR (Görseldeki sıralama korundu) */}
         <div className="flex-1 flex items-center justify-end gap-4 md:gap-6 text-black">
-          <Link href="#" className="hidden md:block text-sm font-medium hover:text-gray-600 transition-colors">
-            GİRİŞ YAP
-          </Link>
+          {status === "authenticated" && session?.user ? (
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-sm font-medium">{session.user.name}</span>
+              <button 
+                onClick={() => signOut()} 
+                className="text-xs font-light text-gray-500 hover:text-red-600 transition-colors"
+              >
+                ÇIKIŞ YAP
+              </button>
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center gap-4">
+              <Link href="/login" className="text-sm font-medium hover:text-gray-600 transition-colors">
+                GİRİŞ YAP
+              </Link>
+              <span className="text-gray-300">|</span>
+              <Link href="/register" className="text-sm font-medium hover:text-gray-600 transition-colors">
+                KAYIT OL
+              </Link>
+            </div>
+          )}
           
           <button className="hover:text-gray-500 transition-colors">
             <User size={22} />
