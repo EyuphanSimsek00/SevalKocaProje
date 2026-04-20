@@ -18,3 +18,4 @@ Projeyi yerel ortamınızda çalıştırmak için:
 2. Bağımlılıkları yükleyin: `npm install`
 3. Geliştirme sunucusunu başlatın: `npm run dev`
 4. Tarayıcınızda `http://localhost:3000` adresine gidin.
+5. Tarayıcınızda `http://localhost:3000/admin` adresine giderek admin paneline ulaşabilirsiniz.
